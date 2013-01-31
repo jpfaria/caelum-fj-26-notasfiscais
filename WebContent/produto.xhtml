@@ -1,0 +1,88 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://jboss.org/seam/faces"
+	template="/_crud.xhtml">
+
+	<ui:param name="genericBean" value="#{produtoBean}" />
+	<ui:param name="titulo" value="Produto" />
+
+	<ui:define name="form-validate">
+		<s:validateForm validatorId="nomeEDescricao" />
+	</ui:define>
+
+	<ui:define name="form-fields">
+	
+		<h:outputLabel value="Nome: " for="nome" />
+		<p:inputText id="nome" value="#{genericBean.entity.nome}">
+			<f:validator validatorId="comecaComMaiuscula" />
+		</p:inputText>
+
+		<h:outputLabel value="Descrição: " for="descricao" />
+		<p:editor id="descricao" value="#{genericBean.entity.descricao}" />
+
+		<h:outputLabel value="Preço: " for="preco" />
+		<p:inputText id="preco" value="#{genericBean.entity.preco}" required="true" 
+			requiredMessage="Preço Obrigatório" validatorMessage="O valor mínimo é 0,50">
+		
+			<f:validateDoubleRange minimum="0.50" />
+			
+		</p:inputText>
+				
+	</ui:define>
+	
+	<ui:define name="list">
+		
+		<p:column headerText="Nome" sortBy="#{entity.nome}" filterBy="#{entity.nome}">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{entity.nome}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{entity.nome}">
+                    	<f:validator validatorId="comecaComMaiuscula" />
+                    </p:inputText>  
+                </f:facet>  
+            </p:cellEditor>  
+        </p:column> 
+		
+		<p:column headerText="Descrição">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{entity.descricao}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{entity.descricao}"/>  
+                </f:facet>  
+            </p:cellEditor>  
+        </p:column> 
+
+		<p:column headerText="Preço">
+		
+            <p:cellEditor>  
+                
+                <f:facet name="output">  
+                    <h:outputText value="#{entity.preco}">
+						<f:convertNumber type="currency" currencySymbol="R$ " locale="pt_BR" />
+					</h:outputText>
+                </f:facet>
+                  
+                <f:facet name="input">  
+                    <p:inputText value="#{entity.preco}" required="true" 
+						requiredMessage="Preço Obrigatório" validatorMessage="O valor mínimo é 0,50">
+						<f:validateDoubleRange minimum="0.50" />
+                    </p:inputText>  
+                </f:facet>
+                  
+            </p:cellEditor>
+            
+        </p:column> 
+	
+	</ui:define>
+
+</ui:composition>

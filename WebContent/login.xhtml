@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/_template.xhtml">
+	
+	<ui:define name="conteudo">
+
+		<h2>#{bundle['login.title']}</h2>
+		
+		<h:form id="formlogin">
+		
+			<h:panelGrid columns="2" styleClass="campos">
+			
+				<h:outputLabel value="#{bundle['login.user']}:" />
+				<h:inputText value="#{loginBean.usuario.login}" />
+				
+				<h:outputLabel value="#{bundle['login.password']}:" />
+				<p:keyboard password="true" value="#{loginBean.usuario.senha}" />
+				
+				<h:commandButton value="#{bundle['login.button']}" 
+					action="#{loginBean.efetuaLogin}" />
+				
+			
+			</h:panelGrid>
+		
+		</h:form>
+
+	</ui:define>
+	
+</ui:composition>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	
+		<title>Sistemas de Notas Fiscais</title>
+		
+		<!-- <h:outputStylesheet library="css" name="style.css" />  -->
+		<h:outputStylesheet library="css" name="default.css" />
+		
+	</h:head>
+	
+	<h:body>
+	
+		<p:growl id="mensagem" showDetail="true" sticky="true" />
+	
+		<p:layout fullPage="true">
+		
+			<p:layoutUnit position="north" size="70">  
+		        <h:graphicImage library="imagens/test" name="logo-uber.png"/>
+		    </p:layoutUnit>
+		
+			<p:layoutUnit position="west" header="Menu" collapsible="true" rendered="#{usuarioLogado.isLogado()}">  
+		        
+		        <h:form> 
+		        
+			        <p:menu>
+						<p:menuitem value="Produtos" url="produto.xhtml" />
+						<p:submenu label="Notas Fiscais">
+						
+							<p:menuitem value="Cadastro" url="notafiscal.xhtml" icon="ui-icon ui-icon-document" />
+							<p:menuitem value="Listagem" url="listanotas.xhtml" icon="ui-icon ui-icon-list" />
+						
+						</p:submenu>
+						<p:menuitem value="Usuários" url="usuario.xhtml"/>
+						<p:menuitem value="Gráfico" url="grafico.xhtml"/>
+						<p:menuitem value="Sair" action="#{loginBean.sair}" />
+						
+					</p:menu>
+				</h:form> 
+		        
+		    </p:layoutUnit>  
+		
+			<p:layoutUnit position="center">  
+		        <ui:insert name="conteudo" />	
+		    </p:layoutUnit> 
+		    
+		    <p:layoutUnit position="south" size="60">  
+		        <strong>Copyright 2012. Todos os Direitos reservados a João Paulo Faria</strong><br />
+		        <h:outputText value="Logado como: #{usuarioLogado.usuario.login}" rendered="#{usuarioLogado.isLogado()}" />
+		        <h:form>
+		        	<h:commandLink value="EN" action="#{internacionalizacaoBean.mudaPara('en')}"/>
+		        	<h:commandLink value="PT" action="#{internacionalizacaoBean.mudaPara('pt')}" />
+		        </h:form>
+		    </p:layoutUnit>
+	    
+	    </p:layout>
+	
+	</h:body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/_template.xhtml">
+
+	<ui:define name="conteudo">
+	
+		<p:commandButton id="adicionar-botao" value="Adicionar Item" type="button" /> 
+		
+		<p:overlayPanel id="adicionar-painel" for="adicionar-botao" hideEffect="fade">  
+	        
+	        <h:form id="item-form">
+				
+				<p:panelGrid columns="2">
+					
+					<f:facet name="header">  
+				        Novo Produto  
+				    </f:facet> 
+				
+					<h:outputLabel for="produto" value="Produto:" /> 
+					<p:selectOneMenu value="#{notaFiscalBean.idProduto}">
+						<f:selectItems value="#{produtoBean.list}" var="produto" itemValue="#{produto.id}" itemLabel="#{produto.nome}"/>
+					</p:selectOneMenu>
+				
+					<h:outputLabel for="quantidade" value="Quantidade:" /> 
+					<p:inputText id="quantidade" value="#{notaFiscalBean.item.quantidade}" />
+				
+					<f:facet name="footer">  
+				        <p:commandButton action="#{notaFiscalBean.guardaItem}" id="guardar-botao" value="Guardar Item" execute="@form" update=":mensagem,:nota-fiscal-form:listagem"/> 
+				    </f:facet>
+				    
+				</p:panelGrid>
+			
+			</h:form>
+	        
+	    </p:overlayPanel>  
+
+		<p:separator />  
+	
+		<h:form id="nota-fiscal-form">
+				
+			<p:panel header="Dados da Nota">
+			
+				<p:panelGrid columns="2">    
+			
+					<h:outputLabel value="CNPJ: " />
+					<p:inputMask value="#{notaFiscalBean.entity.cnpj}" mask="99.999.999/9999-99"/>
+					
+					<h:outputLabel value="Data: " />
+					<p:calendar value="#{notaFiscalBean.entity.data.time}" pattern="dd/MM/yyyy"/>
+				
+				</p:panelGrid>
+					 
+			</p:panel>
+			
+		
+			<p:separator />  
+
+			
+			<p:dataTable value="#{notaFiscalBean.entity.itens}" var="item" id="listagem">
+				
+				<f:facet name="header">  
+			        Produtos
+			    </f:facet> 
+					
+				<p:column>
+	
+					<f:facet name="header">Produto</f:facet>
+							
+					#{item.produto.nome}
+				
+				</p:column>
+		
+				<p:column>
+	
+					<f:facet name="header">Quantidade</f:facet>
+							
+					#{item.quantidade}
+				
+				</p:column>
+		
+				<p:column>
+		
+					<f:facet name="header">Valor Unitário</f:facet>
+							
+					<h:outputText value="#{item.valorUnitario}">
+						<f:convertNumber type="currency" currencySymbol="R$ " locale="pt_BR" />
+					</h:outputText>
+				
+				</p:column>
+		
+				<p:column>
+		
+					<f:facet name="header">Total</f:facet>
+							
+					<h:outputText value="#{item.total}">
+						<f:convertNumber type="currency" currencySymbol="R$ " locale="pt_BR" />
+					</h:outputText>
+					
+					<f:facet name="footer">
+            
+		            	<h:outputText value="#{notaFiscalBean.total}">
+		            		<f:convertNumber type="currency" currencySymbol="R$ " locale="pt_BR" />
+		            	</h:outputText>
+		            	
+		            </f:facet>
+	
+				</p:column>
+		
+			</p:dataTable>
+		
+			<p:separator />  
+
+			<p:commandButton value="Gravar" actionListener="#{notaFiscalBean.grava}" update=":mensagem" type="submit"/>
+		
+		</h:form>	
+
+	</ui:define>
+
+</ui:composition>

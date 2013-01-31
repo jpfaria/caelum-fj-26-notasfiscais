@@ -1,0 +1,58 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/_template.xhtml">
+
+	<ui:define name="conteudo">
+	
+		<p:commandButton id="botao-adicionar" value="Adicionar" type="button" />
+	
+		<p:overlayPanel for="botao-adicionar" hideEffect="fade">
+
+			<h:form id="formulario">
+			
+				<ui:insert name="form-validate" />
+			
+				<p:panelGrid columns="2">
+					
+					<ui:insert name="form-fields" />
+					
+					<f:facet name="footer">
+						<p:commandButton value="Gravar" action="#{genericBean.grava}" icon="ui-icon-disk" update="@form,:form-tabela:tabela,:mensagem" />  
+				    </f:facet>
+					
+				</p:panelGrid>
+		
+			</h:form>
+		
+		</p:overlayPanel>
+		
+		
+		<h:form id="form-tabela">
+		
+			<p:dataTable value="#{genericBean.lazyList}" var="entity"
+				paginator="true" rows="5" dynamic="true" lazy="true" editable="true" id="tabela">
+		
+				<p:ajax event="rowEdit" listener="#{genericBean.atualiza(entity)}" update="@this :mensagem" />
+		
+				<ui:insert name="list" />
+		
+				<p:column >
+		
+					<p:rowEditor />
+					<p:commandButton value="Remover" action="#{genericBean.remove(entity)}" update="@form,:mensagem" icon="ui-icon ui-icon-trash" />
+				
+				</p:column>
+		
+			</p:dataTable>
+		
+		</h:form>
+	
+	</ui:define>
+
+</ui:composition>

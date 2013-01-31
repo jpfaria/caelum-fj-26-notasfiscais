@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="antlr-2.7.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/antlr-2.7.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-collections-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/hibernate-3.6.4-Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/hibernate-validator-4.0.2.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/javassist-3.14.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/jsf-api-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/jsf-impl-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/jta-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/log4j-1.2.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/mysql-connector-java-5.1.12-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/primefaces-3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/seam-faces-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/seam-solder-3.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/slf4j-api-1.5.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/slf4j-log4j12-1.5.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/validation-api-1.0.0.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/weld-servlet-1.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

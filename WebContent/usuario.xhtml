@@ -1,0 +1,49 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/_crud.xhtml">
+
+	<ui:param name="genericBean" value="#{usuarioBean}" />
+	<ui:param name="titulo" value="Usuário" />
+
+	<ui:define name="form-fields">
+
+		<h:outputLabel value="Nome: " for="login"/>
+		<p:inputText id="login" value="#{genericBean.entity.login}"/>
+		
+		<h:outputLabel value="Senha: " for="senha"/>
+		<p:inputText id="senha" value="#{genericBean.entity.senha}"/>
+				
+	</ui:define>
+	
+	<ui:define name="list">
+		
+		<p:column headerText="Login">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{entity.login}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText id="login" value="#{entity.login}"/>  
+                </f:facet>  
+            </p:cellEditor>
+        </p:column> 
+        
+        <p:column headerText="Senha">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="******" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:password id="senha" value="#{entity.senha}"/>  
+                </f:facet>  
+            </p:cellEditor>
+        </p:column> 
+	
+	</ui:define>
+		
+</ui:composition>
